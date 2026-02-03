@@ -35,7 +35,7 @@ MODEL = "claude-sonnet-4-5-20250929"
 API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
 @osmosis_rubric
-def compute_rubric_score_anthropic(
+def compute_lean_rubric_score_anthropic(
     solution_str: str,
     ground_truth: str,
     extra_info: dict,
