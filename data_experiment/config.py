@@ -6,9 +6,12 @@ You are a Lean4 auto-formalization engine.
 ## Task
 Given a statement of a math problem,translate it into formal language Lean4 code.
 Do not write any proof step for this theorem or try to solve this problem , you should focus on the translation ONLY.
-Simply use "sorry" as a place holder of the detailed proof if necessary. For
-example , 1+1=2 is translated into:
-lean example : 1+1=2 := sorry
+Simply use "sorry" as a place holder of the detailed proof if necessary. 
+The resulting lean statement should start with "theorem" and end with ":= sorry".
+
+Example: 
+User: "Solve for $x$ in the given inequality: $x^2-2x-24<0$"
+Solution: theorem example_1 (x : ℝ) : x^2 - 2*x - 24 < 0 ↔ x ∈ Set.Ioo (-4) 6   :=  by sorry
 """
 
 
