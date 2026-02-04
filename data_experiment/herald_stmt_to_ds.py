@@ -1,7 +1,7 @@
 #https://huggingface.co/datasets/internlm/Lean-Workbook
 
 
-from config import generate_lean_example_workbook
+from config import generate_lean_example_herald_stmt
 
 import argparse
 import json
@@ -15,7 +15,7 @@ import pyarrow.parquet as pq
 
 def estimate_row_size() -> int:
     """Estimate the size of a single row in bytes."""
-    sample = generate_lean_example_workbook()
+    sample = generate_lean_example_herald_stmt()
     # Estimate JSON size (includes keys, quotes, etc.)
     json_str = json.dumps(sample)
     return len(json_str.encode('utf-8'))
@@ -34,7 +34,7 @@ def generate_jsonl(output_path: str, target_size_mb: float, batch_size: int = 10
         while current_size < target_size_bytes:
             # Generate a batch
             for _ in range(batch_size):
-                example = generate_lean_example_workbook()
+                example = generate_lean_example_herald_stmt()
                 line = json.dumps(example) + '\n'
                 line_bytes = line.encode('utf-8')
 
@@ -74,7 +74,7 @@ def generate_parquet_by_rows(output_path: str, target_rows: int):
     }
 
     for i in range(target_rows):
-        example = generate_lean_example_workbook()
+        example = generate_lean_example_herald_stmt()
         batch_data['user_prompt'].append(example['user_prompt'])
         batch_data['system_prompt'].append(example['system_prompt'])
         batch_data['ground_truth'].append(example['ground_truth'])
@@ -120,7 +120,7 @@ def generate_parquet(output_path: str, target_size_mb: float, batch_size: int = 
             }
 
             for _ in range(batch_size):
-                example = generate_lean_example_workbook()
+                example = generate_lean_example_herald_stmt()
                 batch_data['user_prompt'].append(example['user_prompt'])
                 batch_data['system_prompt'].append(example['system_prompt'])
                 batch_data['ground_truth'].append(example['ground_truth'])

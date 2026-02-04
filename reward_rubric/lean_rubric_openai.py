@@ -14,7 +14,7 @@ You are given two strings:
 
 Your task is to output a single numeric reward between 0 and 1.
 
-- If the predicted string is empty, malformed, or not a valid Lean4 statement,
+- If the predicted string is empty, malformed, or not a valid Lean4 statement that passes the Lean4 kernel,
   output 0 immediately.
 - If the predicted statement does not parse or elaborate in Lean4,
   output 0 immediately.
