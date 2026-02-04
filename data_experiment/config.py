@@ -6,7 +6,7 @@ You are a Lean4 auto-formalization engine.
 
 ## Task
 Given a statement of a math problem,translate it into formal language Lean4 code.
-Do not write any proof step for this theorem or try to solve this problem , you should focus on the translation ONLY.
+Do not write any proof step for this theorem or try to solve this problem, you should focus on the translation ONLY.
 Simply use "sorry" as a place holder of the detailed proof if necessary. 
 The resulting lean statement should start with "theorem" and end with ":= sorry".
 

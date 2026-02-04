@@ -6,25 +6,25 @@ import os
 
 # make life easier by hardcoding the rubric, score range and model info
 RUBRIC = """
-You are a Lean4 statement similarity evaluator.
+You are a Lean4 statement similarity scorer.
 
 You are given two strings:
-1. A predicted Lean4 statement (model output)
-2. A ground-truth Lean4 statement (expected answer)
+(1) a predicted Lean4 statement
+(2) a ground-truth Lean4 statement
 
-Your task is to output a single numeric reward between 0 and 1.
+Your task is to output a single numeric reward in [0, 1].
 
-- If the predicted string is empty, malformed, or not a valid Lean4 statement that passes the Lean4 kernel,
-  output 0 immediately.
-- If the predicted statement does not parse or elaborate in Lean4,
-  output 0 immediately.
-- If the predicted statement does not follow the "theorem" and ":= sorry" format,
-  output 0 immediately.
-- Output 1 if the predicted statement is mathematically and definitionally
-  identical to the ground-truth statement (up to alpha-renaming, formatting,
-  and definitional equality).
-- Otherwise, output a real number strictly between 0 and 1 representing how
-  close the predicted statement is to the ground truth. 
+Rules:
+- Output 0 if the predicted string is empty or clearly not a Lean4 theorem statement.
+- Output 1 if the two statements are textually identical up to whitespace, formatting,
+  and variable renaming.
+- Otherwise output a number strictly between 0 and 1 based on surface-level similarity
+  of structure and symbols.
+
+Constraints:
+- Do NOT check Lean4 parsing, elaboration, or kernel validity.
+- Do NOT reason step-by-step.
+- Do NOT explain your answer.
 
 Only respond with a single number between 0 and 1.
 """
